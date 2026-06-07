@@ -1,0 +1,110 @@
+====================================================================================
+SRIDHARAN CHANDRAN
+SENIOR DATA SCIENTIST
+====================================================================================
+
+Email: sridharanchandran1904@gmail.com | Phone: +91-7598998545
+LinkedIn: https://www.linkedin.com/in/sridharan-c-055466148/
+GitHub: https://github.com/Sridharan-19
+Academic Portfolio: https://eportfolio.mygreatlearning.com/sridharan22
+Location: Global Remote
+
+PROFESSIONAL SUMMARY
+====================================================================================
+Senior Data Scientist with 7+ years of experience designing and deploying production AI systems across Retail, Healthcare, Construction, and Enterprise platforms. Specialized in Generative AI, Agentic AI, intelligent document processing, computer vision automation, and recommendation systems. Proven track record delivering measurable business impact through scalable ML pipelines, LLM-powered applications, and cloud-native AI infrastructure.
+
+CORE COMPETENCIES
+====================================================================================
+Programming: Python, SQL, PySpark, Scala
+Machine Learning: Scikit-learn, XGBoost, RandomForest, Clustering, Association Mining, Time Series Forecasting
+Deep Learning: PyTorch, TensorFlow, Transformers, Hugging Face
+Generative AI & LLM: RAG Systems, LangChain, Agentic AI, Prompt Engineering, LLM Integration, GPT-4, Claude, Gemini
+NLP: Named Entity Recognition (NER), Document Classification, Semantic Search, Text Summarization, PubMedBERT, DeBERTa
+Computer Vision: YOLO, EfficientNet, Image Processing, Architectural Automation
+Vector Databases: FAISS, ChromaDB, Pinecone, Weaviate
+Cloud & Infrastructure: Azure (VM, ML Studio, Cognitive Services), AWS (SageMaker, EC2, S3), GCP, Snowflake, Snowpark
+Data Engineering: Apache Spark, Kafka, ETL Pipelines, Data Warehousing
+MLOps & Tools: Docker, Kubernetes, CI/CD, Model Monitoring, Automated Batch Inference
+Visualization: Power BI, Tableau, Matplotlib, Seaborn
+
+PROFESSIONAL EXPERIENCE
+====================================================================================
+
+Senior Data Scientist | Levelshift (Preludesys India Pvt Ltd) | Chennai
+Nov 2025 – Present
+
+• Medical Records Review Management (MRRM) - Insurance Claims Automation:
+  - Designed scalable Intelligent Document Processing (IDP) architecture for insurance claims across 20+ agencies
+  - Classified reports into L1/L2/L3 categories with reviewable workflows using DeBERTa
+  - Developed medical NER pipelines using PubMedBERT and implemented LLM-driven document summarization (GPT-4.1 mini)
+  - Built end-to-end document AI pipeline: PDF ingestion → image conversion → classification → entity extraction → page clustering → automated summarization
+  - Deployed scalable AI pipelines on Microsoft Azure Virtual Machines with cron-based job schedulers for automated batch inference and monitoring
+
+• Agentic AI Enterprise Automation Solutions (Client: Tufin):
+  - Designed 15+ Agentic AI solutions for enterprise document processing, validation workflows, and compliance checks
+  - Developed LLM-powered agents for automated enterprise decision support and workflow orchestration
+  - Reduced manual processing time by 70% and improved compliance accuracy to 99%
+
+Data Scientist | Emergere Computing Solutions Pvt Ltd | Coimbatore
+Jan 2024 – Nov 2025
+
+• Cross-Selling & White Space Analysis (Client: USLBM):
+  - Developed customer segmentation and association mining pipelines using K-Means and ECLAT
+  - Identified cross-sell opportunities that increased sales by 18%
+  - Reduced customer acquisition cost by 22%
+
+• Credit Risk Analytics (Client: USLBM):
+  - Built predictive models using RandomForest and XGBoost to forecast payment behavior and late settlement risks
+  - Improved credit allocation strategies and reduced default rate by 12%
+
+• Computer Vision for Architectural Automation (Client: USLBM):
+  - Automated detection of doors and windows in architectural floor plans using YOLO + EfficientNet + Gemini
+  - Reduced manual review time from days to hours (95% time savings)
+
+• Multilingual RAG Chatbot (Client: UVEDA.org):
+  - Built multilingual RAG system with LangChain, BeautifulSoup4, Playwright, FAISS, BGE-M3 embeddings
+  - Integrated Gemini 2.5 Flash and OpenRouter models for multi-language support
+  - Achieved 92% customer satisfaction rating
+
+Data Scientist | LearningBrite Technologies Pvt Ltd | Bangalore
+Jun 2020 – Dec 2023
+
+• Demand Forecasting for Retail Chain:
+  - Developed Ensemble time-series forecasting models (ARIMA, Prophet, LSTM, XGBoost)
+  - Achieved 91% forecasting accuracy, reduced stockouts by 15% and inventory costs by 12%
+
+• Personalized Product Recommendation Engine (Client: DirectBuy):
+  - Built recommendation systems using apriori algorithm and collaborative filtering (SVD)
+  - Implemented A/B testing with 2,000+ users
+  - Improved customer engagement by 9% and average order value by 14%
+
+Operations Consultant | RSM India | Dolvi, Navi Mumbai
+Nov 2018 – May 2020
+
+• Enterprise Data Analytics (Client: JSW Steel):
+  - Conducted statistical and operational analytics to optimize manufacturing, retail, and services workflows
+  - Led business process re-engineering initiatives reducing operational turnaround time by 20%
+  - Delivered data-driven insights supporting executive decision-making for mid-to-large-scale enterprises
+
+EDUCATION
+====================================================================================
+PG Program in Artificial Intelligence & Machine Learning | University of Texas at Austin (2022-2023)
+B.E. Computer Engineering | DIBMT, Delhi (2012-2015)
+
+CERTIFICATIONS
+====================================================================================
+• IBM Data Science Professional Certificate – Coursera
+• AI on Cloud – Great Learning
+• Big Data Analytics – Great Learning
+• LangChain for LLM Applications – DeepLearning.AI
+• E2E MLOps with Azure ML – Microsoft
+
+KEY ACHIEVEMENTS & IMPACT
+====================================================================================
+✓ 7+ years architecting and deploying production AI/ML systems at scale
+✓ Specialized expertise in Generative AI, RAG systems, and Agentic AI
+✓ Deployed 15+ enterprise Agentic AI solutions
+✓ Built end-to-end IDP systems processing 20,000+ documents monthly
+✓ Achieved 91% demand forecasting accuracy with 12% inventory cost reduction
+✓ Delivered 18% sales increase through ML-driven cross-sell opportunities
+✓ Proficient in multi-cloud environments: Azure, AWS, GCP

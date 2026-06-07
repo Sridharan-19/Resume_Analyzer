@@ -1,0 +1,27 @@
+requests
+beautifulsoup4
+lxml
+apscheduler
+scikit-learn
+pyyaml
+python-dotenv
+
+# Browser Automation (for automated job apply)
+selenium>=4.10.0
+playwright>=1.40.0
+pyppeteer>=1.0.2
+
+# Email & Notifications
+smtplib
+email-validator
+
+# Logging & Monitoring
+loguru>=0.7.0
+
+# Database (for tracking applications)
+sqlalchemy>=2.0.0
+sqlite3
+
+# Optional: add transformers or sentence-transformers for semantic matching
+# transformers
+# sentence-transformers

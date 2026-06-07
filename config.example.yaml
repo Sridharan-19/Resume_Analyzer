@@ -1,0 +1,81 @@
+# Resume_Analyzer Configuration
+# Configure job sources, scraping settings, and apply strategies
+
+# Path to your base resume
+resume_path: "resumes/base_resume.txt"
+
+# Scheduling configuration (daily run time)
+run_time:
+  hour: 9
+  minute: 0
+
+# Target job roles (for filtering and tailoring)
+target_roles:
+  - "Data Scientist"
+  - "Gen AI Engineer"
+  - "AIML Engineer"
+  - "ML Engineer"
+
+# Job location requirements
+location_requirements:
+  remote_only: true
+  countries: ["Global", "USA", "Canada", "UK", "Germany", "India", "Australia", "NZ"]
+
+# Job board scrapers configuration
+scrapers:
+  
+  # RemoteOK - Specialized in remote positions
+  - type: "remoteok"
+    enabled: true
+    keywords:
+      - "Data Scientist"
+      - "Gen AI Engineer"
+      - "AIML Engineer"
+      - "ML Engineer"
+  
+  # Indeed - Largest job board
+  - type: "indeed"
+    enabled: true
+    search_queries:
+      - "Data Scientist remote global"
+      - "Generative AI Engineer remote"
+      - "AIML Engineer remote"
+      - "ML Engineer remote"
+  
+  # LinkedIn - Professional network
+  - type: "linkedin"
+    enabled: true
+    keywords:
+      - "Data Scientist"
+      - "Machine Learning"
+      - "Generative AI"
+    notes: "LinkedIn API or third-party service required for production"
+  
+  # AngelList - Startup-focused
+  - type: "angellist"
+    enabled: true
+    keywords:
+      - "Data Scientist"
+      - "ML Engineer"
+      - "AI Engineer"
+
+# Resume tailoring settings
+tailoring:
+  enabled: true
+  strategy: "role-specific"  # Tailor differently for each role
+  highlight_relevant_projects: true
+  add_skill_matching: true
+  
+# Application settings
+apply_settings:
+  dry_run: true  # Set to false to enable automated applications (requires careful setup)
+  manual_review: true
+  save_tailored_resumes: true
+  
+# Output directory
+output_directory: "resumes/tailored"
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/resume_analyzer.log"

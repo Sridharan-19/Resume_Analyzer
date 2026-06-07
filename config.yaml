@@ -1,0 +1,118 @@
+# Resume_Analyzer Configuration - AUTOMATED JOB APPLY VERSION
+# Target: Global Remote Data Scientist, Gen AI, AIML, ML Engineer Roles
+
+# Path to your base resume
+resume_path: "resumes/base_resume.txt"
+
+# Scheduling configuration (daily run time - UTC/your timezone)
+run_time:
+  hour: 9
+  minute: 0
+
+# Target job roles (exact match in job titles)
+target_roles:
+  - "Data Scientist"
+  - "Gen AI Engineer"
+  - "Generative AI Engineer"
+  - "AIML Engineer"
+  - "AI/ML Engineer"
+  - "ML Engineer"
+  - "Machine Learning Engineer"
+  - "LLM Engineer"
+  - "AI Engineer"
+
+# Job location requirements
+location_requirements:
+  remote_only: true
+  countries: 
+    - "Global"
+    - "USA"
+    - "Canada"
+    - "UK"
+    - "Germany"
+    - "India"
+    - "Australia"
+    - "New Zealand"
+
+# Job board scrapers configuration
+scrapers:
+  - type: "remoteok"
+    enabled: true
+    priority: 1
+  - type: "indeed"
+    enabled: true
+    priority: 2
+  - type: "linkedin"
+    enabled: true
+    priority: 3
+  - type: "angellist"
+    enabled: true
+    priority: 2
+
+# Resume tailoring settings
+tailoring:
+  enabled: true
+  strategy: "role-specific"
+  highlight_relevant_projects: true
+  add_skill_matching: true
+  priority_keywords_from_jd: true
+
+# ========================================
+# APPLICATION SETTINGS - AUTOMATED MODE
+# ========================================
+apply_settings:
+  # IMPORTANT: Set to false to enable AUTOMATED job applications
+  # WARNING: Requires credentials configured in .env file
+  # See .env.example for required credentials
+  dry_run: true
+  
+  # Browser automation settings
+  browser:
+    headless: true              # Run browser without GUI (true=no GUI, false=show browser)
+    timeout_seconds: 30         # Wait timeout for elements
+    screenshot_on_error: true   # Save screenshot if error occurs
+  
+  # Retry settings for failed applications
+  retry:
+    enabled: true
+    max_attempts: 3
+    wait_seconds: 5             # Wait between retries
+  
+  # Rate limiting to avoid blocking
+  rate_limit:
+    enabled: true
+    delay_between_apps: 5       # Seconds between applications
+    max_apps_per_hour: 10       # Maximum applications per hour
+  
+  # Notifications
+  notifications:
+    enabled: false
+    email_on_success: false
+    email_on_failure: false
+  
+  # Manual review
+  manual_review: true           # Log all applications for review
+  save_tailored_resumes: true
+  create_report: true
+
+# Output configuration
+output_directory: "resumes/tailored"
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/resume_analyzer.log"
+  console_output: true
+
+# Application tracking
+tracking:
+  database_path: "application_history.db"
+  export_report: true
+  report_format: "csv"
+
+# Optimization
+optimization:
+  dedup_jobs: true
+  min_salary_filter: 0
+  max_results_per_source: 50
+  timeout_seconds: 30
