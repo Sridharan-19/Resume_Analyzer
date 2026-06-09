@@ -39,7 +39,7 @@ scrapers:
   - type: "remoteok"
     enabled: true
     priority: 1
-  - type: "indeed"
+  - type: "wellfound"
     enabled: true
     priority: 2
   - type: "linkedin"
@@ -68,7 +68,7 @@ apply_settings:
   
   # Browser automation settings
   browser:
-    headless: true              # Run browser without GUI (true=no GUI, false=show browser)
+    headless: false              # Run browser without GUI (true=no GUI, false=show browser)
     timeout_seconds: 30         # Wait timeout for elements
     screenshot_on_error: true   # Save screenshot if error occurs
   

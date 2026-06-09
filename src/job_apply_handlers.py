@@ -98,12 +98,12 @@ class LinkedInApplyHandler(JobApplyHandler):
             self.close()
 
 
-class IndeedApplyHandler(JobApplyHandler):
-    """Handler for Indeed job applications."""
+class WellfoundApplyHandler(JobApplyHandler):
+    """Handler for Wellfound (formerly AngelList) job applications."""
     
     def apply(self, job: Dict, resume_path: str) -> bool:
         """
-        Apply to Indeed job posting.
+        Apply to Wellfound job posting.
         
         Args:
             job: Job dictionary
@@ -112,19 +112,63 @@ class IndeedApplyHandler(JobApplyHandler):
         Returns:
             True if successful
         """
-        log.info(f"Indeed apply handler: {job.get('title')}")
+        log.info(f"Wellfound apply handler: {job.get('title')}")
         
         # Check credentials
-        if not CredentialManager.validate_indeed_credentials():
-            log.warning("Indeed credentials not configured, skipping automated apply")
+        if not CredentialManager.validate_wellfound_credentials():
+            log.error("Wellfound credentials not configured")
             return False
         
-        email, password = CredentialManager.get_indeed_credentials()
+        email, password = CredentialManager.get_wellfound_credentials()
         
         try:
             # Initialize browser
             if not self.browser.setup_chrome_driver():
                 return False
+            
+            # Go to login page first
+            login_url = "https://wellfound.com/login"
+            if not self.browser.open_page(login_url):
+                return False
+            
+            # Wait for email input and fill it
+            email_selectors = ["input[name='email']", "input#user_email", "input[type='email']"]
+            email_filled = False
+            for selector in email_selectors:
+                if self.browser.fill_input(selector, email):
+                    email_filled = True
+                    break
+            
+            if not email_filled:
+                log.error("Could not find email input on Wellfound login page")
+                return False
+            
+            # Fill password
+            password_selectors = ["input[name='password']", "input#user_password", "input[type='password']"]
+            password_filled = False
+            for selector in password_selectors:
+                if self.browser.fill_input(selector, password):
+                    password_filled = True
+                    break
+            
+            if not password_filled:
+                log.error("Could not find password input on Wellfound login page")
+                return False
+            
+            # Click login
+            login_buttons = ["input[type='submit']", "button[type='submit']", "button:contains('Log in')", ".c-button"]
+            logged_in = False
+            for button in login_buttons:
+                if self.browser.click_element(button):
+                    logged_in = True
+                    break
+            
+            if not logged_in:
+                log.error("Could not click log in button")
+                return False
+            
+            # Wait a few seconds for login redirection
+            time.sleep(5)
             
             # Open job posting
             apply_url = job.get('apply_url', '')
@@ -135,109 +179,30 @@ class IndeedApplyHandler(JobApplyHandler):
             if not self.browser.open_page(apply_url):
                 return False
             
-            # Look for Apply button
-            apply_button_selectors = [
-                "button[aria-label='Apply now']",
+            # Look for Wellfound apply/interest buttons
+            apply_buttons = [
+                "button[data-test='apply-button']",
                 "button:contains('Apply')",
-                ".applyButton"
+                "button:contains('Interested')",
+                ".c-apply-button",
+                "button:contains('Apply now')"
             ]
             
             applied = False
-            for selector in apply_button_selectors:
+            for selector in apply_buttons:
                 if self.browser.click_element(selector):
                     applied = True
                     break
             
             if not applied:
-                log.warning("Apply button not found")
+                log.warning("Wellfound Apply button not found")
                 return False
             
-            # Upload resume if needed
-            file_input_selectors = [
-                "input[type='file']",
-                "input[accept*='pdf']",
-                "input[accept*='doc']"
-            ]
-            
-            for selector in file_input_selectors:
-                try:
-                    if self.browser.upload_file(selector, resume_path):
-                        log.info("Resume uploaded")
-                        time.sleep(1)
-                        break
-                except:
-                    continue
-            
-            # Submit if there's a submit button
-            submit_selectors = [
-                "button[type='submit']",
-                "button:contains('Submit')",
-                ".submitButton"
-            ]
-            
-            for selector in submit_selectors:
-                if self.browser.click_element(selector):
-                    log.info("Application submitted")
-                    return True
-            
-            log.info("Indeed application completed")
+            log.info("Wellfound application submitted successfully")
             return True
         
         except Exception as e:
-            log.error(f"Error applying to Indeed job: {e}")
-            return False
-        
-        finally:
-            self.close()
-
-
-class AngelListApplyHandler(JobApplyHandler):
-    """Handler for AngelList job applications."""
-    
-    def apply(self, job: Dict, resume_path: str) -> bool:
-        """
-        Apply to AngelList job posting.
-        
-        Args:
-            job: Job dictionary
-            resume_path: Path to tailored resume
-        
-        Returns:
-            True if successful
-        """
-        log.info(f"AngelList apply handler: {job.get('title')}")
-        
-        try:
-            # Initialize browser
-            if not self.browser.setup_chrome_driver():
-                return False
-            
-            # Open job posting
-            apply_url = job.get('apply_url', '')
-            if not apply_url:
-                log.error("No apply URL provided")
-                return False
-            
-            if not self.browser.open_page(apply_url):
-                return False
-            
-            # Look for Apply button
-            apply_button_selectors = [
-                "button[data-test='apply-button']",
-                "button:contains('Apply')",
-                ".c-apply-button"
-            ]
-            
-            for selector in apply_button_selectors:
-                if self.browser.click_element(selector):
-                    log.info("AngelList application submitted")
-                    return True
-            
-            log.warning("Apply button not found on AngelList")
-            return False
-        
-        except Exception as e:
-            log.error(f"Error applying to AngelList job: {e}")
+            log.error(f"Error applying to Wellfound job: {e}")
             return False
         
         finally:
@@ -319,9 +284,7 @@ def get_apply_handler(job_source: str, headless=True) -> JobApplyHandler:
     
     if "linkedin" in source_lower:
         return LinkedInApplyHandler(headless=headless)
-    elif "indeed" in source_lower:
-        return IndeedApplyHandler(headless=headless)
-    elif "angellist" in source_lower:
-        return AngelListApplyHandler(headless=headless)
+    elif "wellfound" in source_lower or "angellist" in source_lower:
+        return WellfoundApplyHandler(headless=headless)
     else:
         return GenericJobApplyHandler(headless=headless)

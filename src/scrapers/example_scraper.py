@@ -50,9 +50,9 @@ def fetch_jobs(source=None) -> List[Dict]:
     jobs = []
     
     try:
-        # Indeed Remote Jobs
-        if source is None or source == "indeed":
-            jobs.extend(_fetch_indeed_jobs())
+        # Wellfound Remote Jobs
+        if source is None or source == "wellfound":
+            jobs.extend(_fetch_wellfound_jobs())
         
         # RemoteOK Jobs
         if source is None or source == "remoteok":
@@ -73,29 +73,25 @@ def fetch_jobs(source=None) -> List[Dict]:
     return jobs
 
 
-def _fetch_indeed_jobs() -> List[Dict]:
-    """Fetch jobs from Indeed using web scraping (requires BeautifulSoup)."""
+def _fetch_wellfound_jobs() -> List[Dict]:
+    """Fetch jobs from Wellfound using web scraping/mock."""
     jobs = []
     try:
-        # Indeed API for job search: https://opensource.indeedapis.com/
-        # Using Indeed Job Board API (if available with API key)
-        # For now, returning sample jobs that would be populated from API
-        
-        sample_indeed_jobs = [
+        sample_wellfound_jobs = [
             {
                 "title": "Senior Data Scientist - Generative AI",
                 "company": "TechCorp Inc",
                 "description": "Looking for experienced Data Scientist with expertise in Generative AI, LLM, RAG systems. Work on production ML systems. Remote global role.",
-                "apply_url": "https://indeed.com/job/xyz123",
+                "apply_url": "https://wellfound.com/job/xyz123",
                 "location": "Remote, Global",
                 "salary_range": "$150k - $220k",
-                "source": "Indeed",
+                "source": "Wellfound",
                 "posted_date": datetime.now().isoformat(),
             }
         ]
-        jobs.extend(sample_indeed_jobs)
+        jobs.extend(sample_wellfound_jobs)
     except Exception as e:
-        log.warning(f"Error fetching from Indeed: {e}")
+        log.warning(f"Error fetching from Wellfound: {e}")
     
     return jobs
 

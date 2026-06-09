@@ -10,9 +10,9 @@ import logging
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
-from src.scrapers.example_scraper import fetch_jobs, fetch_jobs_for_role
-from src.resume_tailer import tailor_resume_for_job, _extract_job_role
-from src.apply import apply_to_job, prepare_application_report
+from .scrapers.example_scraper import fetch_jobs, fetch_jobs_for_role
+from .resume_tailer import tailor_resume_for_job, _extract_job_role
+from .apply import apply_to_job, prepare_application_report
 
 logging.basicConfig(
     level=logging.INFO,
@@ -221,11 +221,34 @@ def schedule_daily(config):
 def main():
     """Main entry point."""
     cfg = load_config()
-    
     if len(sys.argv) > 1:
         if sys.argv[1] == "run_once":
             log.info("Running pipeline once...")
             run_pipeline(cfg)
+            return
+        elif sys.argv[1] == "apply" and len(sys.argv) > 2:
+            url = sys.argv[2]
+            title = sys.argv[3] if len(sys.argv) > 3 else "AI Engineer"
+            company = sys.argv[4] if len(sys.argv) > 4 else "Startup"
+            log.info(f"Applying directly to {title} at {company} via {url}...")
+            
+            job = {
+                "title": title,
+                "company": company,
+                "description": "Direct application via URL",
+                "apply_url": url,
+                "location": "Remote",
+                "source": "Wellfound" if "wellfound.com" in url or "angel.co" in url else "Generic",
+            }
+            resume_path = cfg.get("resume_path", "resumes/base_resume.txt")
+            apply_config = cfg.get("apply_settings", {})
+            dry_run = apply_config.get("dry_run", True)
+            browser_config = apply_config.get("browser", {})
+            headless = browser_config.get("headless", True)
+            
+            tailored_path = tailor_resume_for_job(resume_path, job)
+            apply_info = apply_to_job(url, tailored_path, job, dry_run=dry_run, headless=headless)
+            log.info(f"Application status: {apply_info.get('status')}")
             return
         elif sys.argv[1] == "--help" or sys.argv[1] == "-h":
             print("""

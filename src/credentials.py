@@ -19,8 +19,8 @@ class CredentialManager:
     # Credential keys
     LINKEDIN_EMAIL = "LINKEDIN_EMAIL"
     LINKEDIN_PASSWORD = "LINKEDIN_PASSWORD"
-    INDEED_EMAIL = "INDEED_EMAIL"
-    INDEED_PASSWORD = "INDEED_PASSWORD"
+    WELLFOUND_EMAIL = "WELLFOUND_EMAIL"
+    WELLFOUND_PASSWORD = "WELLFOUND_PASSWORD"
     GMAIL_EMAIL = "GMAIL_EMAIL"
     GMAIL_APP_PASSWORD = "GMAIL_APP_PASSWORD"
     NOTIFICATION_EMAIL = "NOTIFICATION_EMAIL"
@@ -62,10 +62,10 @@ class CredentialManager:
         return bool(email and password)
     
     @staticmethod
-    def validate_indeed_credentials() -> bool:
-        """Check if Indeed credentials are available."""
-        email = CredentialManager.get_credential(CredentialManager.INDEED_EMAIL)
-        password = CredentialManager.get_credential(CredentialManager.INDEED_PASSWORD)
+    def validate_wellfound_credentials() -> bool:
+        """Check if Wellfound credentials are available."""
+        email = CredentialManager.get_credential(CredentialManager.WELLFOUND_EMAIL)
+        password = CredentialManager.get_credential(CredentialManager.WELLFOUND_PASSWORD)
         return bool(email and password)
     
     @staticmethod
@@ -76,10 +76,10 @@ class CredentialManager:
         return email, password
     
     @staticmethod
-    def get_indeed_credentials() -> tuple:
-        """Get Indeed email and password."""
-        email = CredentialManager.get_credential(CredentialManager.INDEED_EMAIL)
-        password = CredentialManager.get_credential(CredentialManager.INDEED_PASSWORD)
+    def get_wellfound_credentials() -> tuple:
+        """Get Wellfound email and password."""
+        email = CredentialManager.get_credential(CredentialManager.WELLFOUND_EMAIL)
+        password = CredentialManager.get_credential(CredentialManager.WELLFOUND_PASSWORD)
         return email, password
     
     @staticmethod
